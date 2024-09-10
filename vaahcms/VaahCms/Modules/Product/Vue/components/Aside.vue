@@ -33,7 +33,11 @@ const items = ref([
                 icon: 'fa-regular fa-chart-bar',
                 route:"/categories"
             },
-
+            {
+                label: 'Items',
+                icon: 'fa-regular fa-chart-bar',
+                route:"/items"
+            },
         ]
     },
 ]);

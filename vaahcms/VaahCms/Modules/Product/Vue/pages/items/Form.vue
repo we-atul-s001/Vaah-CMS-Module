@@ -1,12 +1,12 @@
 <script setup>
 import {onMounted, ref, watch} from "vue";
-import { useCategoryStore } from '../../stores/store-categories'
+import { useItemStore } from '../../stores/store-items'
 
 import VhField from './../../vaahvue/vue-three/primeflex/VhField.vue'
 import {useRoute} from 'vue-router';
 
 
-const store = useCategoryStore();
+const store = useItemStore();
 const route = useRoute();
 
 onMounted(async () => {
@@ -62,14 +62,14 @@ const toggleFormMenu = (event) => {
                     <Button class="p-button-sm"
                             v-tooltip.left="'View'"
                             v-if="store.item && store.item.id"
-                            data-testid="categories-view_item"
+                            data-testid="items-view_item"
                             @click="store.toView(store.item)"
                             icon="pi pi-eye"/>
 
                     <Button label="Save"
                             class="p-button-sm"
                             v-if="store.item && store.item.id"
-                            data-testid="categories-save"
+                            data-testid="items-save"
                             @click="store.itemAction('save')"
                             icon="pi pi-save"/>
 
@@ -77,7 +77,7 @@ const toggleFormMenu = (event) => {
                             v-else
                             @click="store.itemAction('create-and-new')"
                             class="p-button-sm"
-                            data-testid="categories-create-and-new"
+                            data-testid="items-create-and-new"
                             icon="pi pi-save"/>
 
 
@@ -86,7 +86,7 @@ const toggleFormMenu = (event) => {
                         type="button"
                         @click="toggleFormMenu"
                         class="p-button-sm"
-                        data-testid="categories-form-menu"
+                        data-testid="items-form-menu"
                         icon="pi pi-angle-down"
                         aria-haspopup="true"/>
 
@@ -98,7 +98,7 @@ const toggleFormMenu = (event) => {
 
                     <Button class="p-button-primary p-button-sm"
                             icon="pi pi-times"
-                            data-testid="categories-to-list"
+                            data-testid="items-to-list"
                             @click="store.toList()">
                     </Button>
                 </div>
@@ -139,8 +139,8 @@ const toggleFormMenu = (event) => {
                     <div class="p-inputgroup">
                         <InputText class="w-full"
                                    placeholder="Enter the name"
-                                   name="categories-name"
-                                   data-testid="categories-name"
+                                   name="items-name"
+                                   data-testid="items-name"
                                    @update:modelValue="store.watchItem"
                                    v-model="store.item.name" required/>
                         <div class="required-field hidden"></div>
@@ -151,19 +151,9 @@ const toggleFormMenu = (event) => {
                     <div class="p-inputgroup">
                         <InputText class="w-full"
                                    placeholder="Enter the slug"
-                                   name="categories-slug"
-                                   data-testid="categories-slug"
+                                   name="items-slug"
+                                   data-testid="items-slug"
                                    v-model="store.item.slug" required/>
-                        <div class="required-field hidden"></div>
-                    </div>
-                </VhField>
-                <VhField label="Email">
-                    <div class="p-inputgroup">
-                        <InputText class="w-full"
-                                   placeholder="Enter the Email"
-                                   name="categories-email"
-                                   data-testid="categories-email"
-                                   v-model="store.item.email" required/>
                         <div class="required-field hidden"></div>
                     </div>
                 </VhField>
@@ -172,8 +162,8 @@ const toggleFormMenu = (event) => {
                     <InputSwitch v-bind:false-value="0"
                                  v-bind:true-value="1"
                                  class="p-inputswitch-sm"
-                                 name="categories-active"
-                                 data-testid="categories-active"
+                                 name="items-active"
+                                 data-testid="items-active"
                                  v-model="store.item.is_active"/>
                 </VhField>
 

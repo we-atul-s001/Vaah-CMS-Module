@@ -1,8 +1,8 @@
 <script setup>
 import { vaah } from '../../../vaahvue/pinia/vaah'
-import { useCategoryStore } from '../../../stores/store-categories'
+import { useItemStore } from '../../../stores/store-items'
 
-const store = useCategoryStore();
+const store = useItemStore();
 const useVaah = vaah();
 
 </script>
@@ -40,16 +40,6 @@ const useVaah = vaah();
                 </template>
 
             </Column>
-             <Column field="email" header="Email"
-                     class="overflow-wrap-anywhere"
-                     :sortable="true">
-
-                 <template #body="prop">
-
-                     {{prop.data.email}}
-                 </template>
-
-             </Column>
 
 
                 <Column field="updated_at" header="Updated"
@@ -70,7 +60,7 @@ const useVaah = vaah();
 
                 <template #body="prop">
                     <InputSwitch v-model.bool="prop.data.is_active"
-                                 data-testid="categories-table-is-active"
+                                 data-testid="items-table-is-active"
                                  v-bind:false-value="0"  v-bind:true-value="1"
                                  class="p-inputswitch-sm"
                                  @input="store.toggleIsActive(prop.data)">
@@ -87,19 +77,19 @@ const useVaah = vaah();
                     <div class="p-inputgroup ">
 
                         <Button class="p-button-tiny p-button-text"
-                                data-testid="categories-table-to-view"
+                                data-testid="items-table-to-view"
                                 v-tooltip.top="'View'"
                                 @click="store.toView(prop.data)"
                                 icon="pi pi-eye" />
 
                         <Button class="p-button-tiny p-button-text"
-                                data-testid="categories-table-to-edit"
+                                data-testid="items-table-to-edit"
                                 v-tooltip.top="'Update'"
                                 @click="store.toEdit(prop.data)"
                                 icon="pi pi-pencil" />
 
                         <Button class="p-button-tiny p-button-danger p-button-text"
-                                data-testid="categories-table-action-trash"
+                                data-testid="items-table-action-trash"
                                 v-if="store.isViewLarge() && !prop.data.deleted_at"
                                 @click="store.itemAction('trash', prop.data)"
                                 v-tooltip.top="'Trash'"
@@ -107,7 +97,7 @@ const useVaah = vaah();
 
 
                         <Button class="p-button-tiny p-button-success p-button-text"
-                                data-testid="categories-table-action-restore"
+                                data-testid="items-table-action-restore"
                                 v-if="store.isViewLarge() && prop.data.deleted_at"
                                 @click="store.itemAction('restore', prop.data)"
                                 v-tooltip.top="'Restore'"

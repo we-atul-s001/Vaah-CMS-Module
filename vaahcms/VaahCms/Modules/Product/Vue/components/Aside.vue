@@ -28,6 +28,12 @@ const items = ref([
                 icon: 'fa-regular fa-chart-bar',
                 route: "/"
             },
+            {
+                label: 'Category',
+                icon: 'fa-regular fa-chart-bar',
+                route:"/categories"
+            },
+
         ]
     },
 ]);
